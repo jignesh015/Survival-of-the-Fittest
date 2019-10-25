@@ -21,6 +21,7 @@ public class PlayerMotor : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        moveVector = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -33,11 +34,10 @@ public class PlayerMotor : MonoBehaviour
             return;
         }
 
-
         moveVector = Vector3.zero;
 
         //Set X position
-        moveVector.x = Mathf.Clamp(Input.GetAxisRaw("Horizontal") * speed, -2f, 2f);
+        moveVector.x = Input.GetAxisRaw("Horizontal") * speed;
 
         //Set Y position
         verticalVelocity = characterController.isGrounded ? -0.5f : verticalVelocity - (gravity * Time.deltaTime);
