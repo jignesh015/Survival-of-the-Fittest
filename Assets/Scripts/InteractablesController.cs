@@ -37,7 +37,7 @@ public class InteractablesController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         //Set possible horizontal positions
-        horizontalPositions = new float[] { -2, 0, 2 };
+        horizontalPositions = new float[] { -1, 0, 1 };
 
         //Create list to store pooled interactables
         collectibleGameObjects = new List<GameObject>();
@@ -90,8 +90,8 @@ public class InteractablesController : MonoBehaviour
             spawnedObjects.RemoveAt(0);
 
             //Re-spawn at new position
-            if (spawnedObjects.FindIndex(s => s.transform.position.z == (nextCheckForPosZ + 40f)) == -1)
-                PlaceInteractableRandomly(nextCheckForPosZ + 40f);
+            if (spawnedObjects.FindIndex(s => s.transform.position.z == (nextCheckForPosZ + interactableSpawnGap*4)) == -1)
+                PlaceInteractableRandomly(nextCheckForPosZ + interactableSpawnGap*4);
 
             //Increment nextCheckForPosZ
             nextCheckForPosZ += interactableSpawnGap;
