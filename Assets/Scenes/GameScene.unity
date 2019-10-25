@@ -11182,6 +11182,7 @@ MonoBehaviour:
   startingPlanePrefab: {fileID: 6088233559548422391, guid: 2ddb0f49f897cbb418b35c03a5057b4a,
     type: 3}
   groundPrefabs:
+  - {fileID: 2182046067130331413, guid: 3c32eb477ecc0a244bb70c5f9b12b487, type: 3}
   - {fileID: 7807030101399313346, guid: 896ae260113ad1d4f84ac485e4e66872, type: 3}
   groundLength: 100
 --- !u!4 &2039368882
