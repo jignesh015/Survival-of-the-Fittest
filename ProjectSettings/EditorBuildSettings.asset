@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/AnimalSelectionScene.unity
+    guid: 76d86f33aebcd874ca91a90f1c6a0e01
+  - enabled: 1
+    path: Assets/Scenes/EnvironmentSelectionScene.unity
+    guid: c2678acc117265e4e98be90aa273f43d
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 0acfbf2c23ce2a0498c228eec3fbca37
   m_configObjects: {}
