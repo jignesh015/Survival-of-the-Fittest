@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private float speed = 6f;
     private float verticalVelocity = 0;
     private float horizontalVelocity = 0;
-    private float cameraAnimationDuration = 2f;
+    public float cameraAnimationDuration = 2f;
     private float gravity = 9.8f;
 
     private int laneNum = 2;
@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     //Variables for handling player health
     private bool isDead = false;
     private float playerHealth = 0;
+
+    private GameSceneHandler gameSceneHandler;
     #endregion
 
     // Start is called before the first frame update
@@ -41,6 +43,12 @@ public class PlayerController : MonoBehaviour
 
         //Get health slider reference
         healthSlider = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
+
+        //Hide healthslider at the start
+        healthSlider.gameObject.SetActive(false);
+
+        //Get reference of gameSceneHandler
+        gameSceneHandler = FindObjectOfType<GameSceneHandler>();
 
         //Set starting health for player
         playerHealth = 1f;
@@ -66,6 +74,8 @@ public class PlayerController : MonoBehaviour
         {
             playerRigidBody.velocity = new Vector3(0, 0, 0);
             GetComponent<Animator>().SetTrigger("dead");
+
+            StartCoroutine(gameSceneHandler.ShowGameOverScreen());
             return;
         }
 
@@ -100,7 +110,7 @@ public class PlayerController : MonoBehaviour
         playerRigidBody.velocity = new Vector3(horizontalVelocity, 0, speed);
 
         //update health slider
-        healthSlider.value = playerHealth;
+        healthSlider.value = playerHealth <= 0.05f ? 0 : playerHealth;
 
         //If health gets too low, player is dead
         isDead = playerHealth <= 0.05f ? true : false;

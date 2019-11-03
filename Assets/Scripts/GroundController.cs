@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class GroundController : MonoBehaviour
 {
-    public GameObject startingPlanePrefab;
-    public GameObject[] groundPrefabs;
+    //Variables for storing all environment prefabs
+    [Header("Forest Prefabs")]
+    public GameObject forestStartingPlanePrefab;
+    public GameObject[] forestGroundPrefabs;
+
+    [Header("Savannah Prefabs")]
+    public GameObject savannahStartingPlanePrefab;
+    public GameObject[] savannahGroundPrefabs;
+
+    [Header("Polar Prefabs")]
+    public GameObject polarStartingPlanePrefab;
+    public GameObject[] polarGroundPrefabs;
+
+    private GameObject startingPlanePrefab;
+    private GameObject[] groundPrefabs;
     public float groundLength = 100f;
 
     private List<GameObject> groundGameObjects;
@@ -15,6 +28,25 @@ public class GroundController : MonoBehaviour
     private float nextCheckForPosZ = 100f;
     private float respawnOffset = 20f;
     private Transform player;
+
+    private void Awake()
+    {
+        switch (GameManager.instance.currentEnvironment)
+        {
+            case 0:
+                startingPlanePrefab = forestStartingPlanePrefab;
+                groundPrefabs = forestGroundPrefabs;
+                break;
+            case 1:
+                startingPlanePrefab = savannahStartingPlanePrefab;
+                groundPrefabs = savannahGroundPrefabs;
+                break;
+            case 2:
+                startingPlanePrefab = polarStartingPlanePrefab;
+                groundPrefabs = polarGroundPrefabs;
+                break;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

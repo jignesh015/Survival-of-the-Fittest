@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnvSceneHandler : MonoBehaviour
 {
@@ -13,11 +14,17 @@ public class EnvSceneHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(1);
+        }
     }
-
+    
     public void EnvironmentClicked(int envIndex)
     {
-        GameManager.instance.EnvironmentClicked(envIndex);
+        Debug.Log("Environment index: " + envIndex);
+        GameManager.instance.currentEnvironment = envIndex;
+
+        SceneManager.LoadSceneAsync("GameScene");
     }
 }

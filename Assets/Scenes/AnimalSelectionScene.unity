@@ -1008,18 +1008,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &879708896 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: d39d00f2aecf564479a2b7fdb4f83075,
-    type: 3}
-  m_PrefabInstance: {fileID: 608483145}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &879708897 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: d39d00f2aecf564479a2b7fdb4f83075,
-    type: 3}
-  m_PrefabInstance: {fileID: 608483145}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &913291796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1120,7 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1173581043}
+      - m_Target: {fileID: 6333587287891740512}
         m_MethodName: AnimalClicked
         m_Mode: 3
         m_Arguments:
@@ -1265,30 +1253,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAnimal: 0
   currentEnvironment: 0
---- !u!1 &1219977635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 6feddc51a4bd88d46b69b962b56e8cdf,
-    type: 3}
-  m_PrefabInstance: {fileID: 1336092497}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1219977636 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 6feddc51a4bd88d46b69b962b56e8cdf,
-    type: 3}
-  m_PrefabInstance: {fileID: 1336092497}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1299654977 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 0904f80ce3a079e43b46018aff2f4a7a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1593877574}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1299654978 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 0904f80ce3a079e43b46018aff2f4a7a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1593877574}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1336092497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2373,7 +2337,7 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1173581043}
+      - m_Target: {fileID: 6333587287891740512}
         m_MethodName: AnimalClicked
         m_Mode: 3
         m_Arguments:
@@ -2652,16 +2616,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6333587287891740510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c5f3fac80ee12b41a5ed0d702756d3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 05b5899f93cf1654da63c76b550de61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bearAnimator: {fileID: 1219977636}
-  lionAnimator: {fileID: 879708897}
-  polarbearAnimator: {fileID: 1299654978}
-  currentAnimator: {fileID: 0}
-  bear: {fileID: 1219977635}
-  lion: {fileID: 879708896}
-  polarbear: {fileID: 1299654977}
 --- !u!65 &6333587288300300816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2771,7 +2728,7 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1173581043}
+      - m_Target: {fileID: 6333587287891740512}
         m_MethodName: AnimalClicked
         m_Mode: 3
         m_Arguments:

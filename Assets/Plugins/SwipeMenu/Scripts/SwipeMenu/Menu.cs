@@ -95,7 +95,7 @@ namespace SwipeMenu
 			UpdateMenuItemsPositionInWorldSpace ();
 
 
-            if (SceneManager.GetActiveScene().buildIndex == 0)
+            if (SceneManager.GetActiveScene().buildIndex == 1)
             {
                 switch (GetClosestMenuItemIndex())
                 {
@@ -111,7 +111,7 @@ namespace SwipeMenu
                 }
             }
 
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if (SceneManager.GetActiveScene().buildIndex == 2)
             {
                 switch (GetClosestMenuItemIndex())
                 {

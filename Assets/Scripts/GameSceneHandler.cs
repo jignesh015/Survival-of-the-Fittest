@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSceneHandler : MonoBehaviour
 {
@@ -10,14 +11,16 @@ public class GameSceneHandler : MonoBehaviour
 
     public GameObject movementInstruction;
     public GameObject interactableInstruction;
+    public GameObject gameOverScreen;
 
 
-    private GameObject player;
+    private PlayerController playerController;
 
     private void Awake()
     {
         movementInstruction.SetActive(false);
         interactableInstruction.SetActive(false);
+        gameOverScreen.SetActive(false);
 
         Debug.Log("Current animal: " + GameManager.instance.currentAnimal);
 
@@ -41,35 +44,44 @@ public class GameSceneHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
-        Invoke("ShowMovementInstruction", 2.1f);
+        Invoke("ShowMovementInstruction", playerController.cameraAnimationDuration);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     private void ShowMovementInstruction()
     {
-        player.GetComponent<PlayerController>().pauseForMovementInstructions = true;
+        playerController.pauseForMovementInstructions = true;
         movementInstruction.SetActive(true);
-    }
-
-    public void HideMovementInstruction()
-    {
-        movementInstruction.SetActive(false);
-        interactableInstruction.SetActive(true);
     }
 
     public void HideInteractableInstruction()
     {
-        player.GetComponent<PlayerController>().pauseForMovementInstructions = false;
-        //movementInstruction.SetActive(false);
-        //interactableInstruction.SetActive(true);
+        playerController.pauseForMovementInstructions = false;
+        playerController.healthSlider.gameObject.SetActive(true);
+
     }
 
+    public IEnumerator ShowGameOverScreen()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        playerController.healthSlider.gameObject.SetActive(false);
+        gameOverScreen.SetActive(true);
+    }
+
+    public void ContinueAfterGameOver()
+    {
+        SceneManager.LoadScene(0);
+    }
 
 }

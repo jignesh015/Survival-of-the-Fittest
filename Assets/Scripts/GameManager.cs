@@ -12,9 +12,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (instance != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
@@ -22,35 +22,5 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void AnimalClicked(int animalIndex)
-    {
-        Debug.Log("Animal index: " + animalIndex);
-        currentAnimal = animalIndex;
-        Destroy(SwipeMenu.Menu.instance.gameObject);
-
-        SceneManager.LoadScene("EnvironmentSelectionScene");
-
-    }
-
-    public void EnvironmentClicked(int envIndex)
-    {
-        Debug.Log("Environment index: " + envIndex);
-        currentEnvironment = envIndex;
-
-        SceneManager.LoadSceneAsync("GameScene");
     }
 }
