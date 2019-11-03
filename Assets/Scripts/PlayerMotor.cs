@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMotor : MonoBehaviour
 {
     #region "Public variables"
     public CharacterController characterController;
+    public Slider healthSlider;
     #endregion
 
     #region "Private variables"
@@ -18,6 +20,10 @@ public class PlayerMotor : MonoBehaviour
 
     private int laneNum = 2;
     private bool controlLocked = false;
+
+    //Variables for handling player health
+    private bool isDead = false;
+    private float playerHealth = 0;
     #endregion
 
 
@@ -25,12 +31,19 @@ public class PlayerMotor : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        healthSlider = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Slider>();
         moveVector = Vector3.zero;
+
+        //Set starting health for player
+        playerHealth = 1f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isDead)
+            return;
+
         //Restrict player interaction during initial camera animation
         if (Time.time < cameraAnimationDuration)
         {
@@ -39,10 +52,8 @@ public class PlayerMotor : MonoBehaviour
         }
 
         moveVector = Vector3.zero;
-        //moveVector = new Vector3(moveVector.x, 0, 0);
 
         ////Set X position
-        ////moveVector.x = Input.GetAxisRaw("Horizontal") * speed;
         if (Input.GetMouseButton(0))
         {
             if ((Input.mousePosition.x <= Screen.width / 2) && laneNum > 1 && !controlLocked)
@@ -77,8 +88,18 @@ public class PlayerMotor : MonoBehaviour
         //Set Z position
         moveVector.z = speed * Time.deltaTime;
 
-        characterController.Move(moveVector );
+        characterController.Move(moveVector);
 
+        healthSlider.value = playerHealth;
+    }
+
+    private void FixedUpdate()
+    {
+        if (isDead)
+            return;
+
+        //Reduce player health by a small factor
+        //playerHealth -= 0.005f;
     }
 
     IEnumerator StopSlide()
@@ -94,12 +115,14 @@ public class PlayerMotor : MonoBehaviour
         {
             //Write logic for collectible interaction
             other.gameObject.SetActive(false);
+            playerHealth += 0.5f;
         }
 
         if (other.gameObject.tag == "Avoidable")
         {
             //Write logic for avoidable interaction
             other.gameObject.SetActive(false);
+            playerHealth -= 0.2f;
         }
     }
 }
